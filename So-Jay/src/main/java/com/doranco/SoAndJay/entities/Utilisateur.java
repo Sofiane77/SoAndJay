@@ -3,6 +3,8 @@ package com.doranco.SoAndJay.entities;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,7 +26,8 @@ public class Utilisateur {
 
     private boolean isActif;
 
-    private String profil;
+    @Enumerated(EnumType.STRING)
+    private Profil profil;
 
     private String email;
 
@@ -47,7 +50,7 @@ public class Utilisateur {
     public Utilisateur() {
     }
 
-    public Utilisateur(String nom, String prenom, String dateNaissance, boolean isActif, String profil, String email, String password, String telephone) {
+    public Utilisateur(String nom, String prenom, String dateNaissance, boolean isActif, Profil profil, String email, String password, String telephone) {
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
@@ -100,11 +103,11 @@ public class Utilisateur {
         isActif = actif;
     }
 
-    public String getProfil() {
+    public Profil getProfil() {
         return profil;
     }
 
-    public void setProfil(String profil) {
+    public void setProfil(Profil profil) {
         this.profil = profil;
     }
 
@@ -164,4 +167,3 @@ public class Utilisateur {
         this.panier = panier;
     }
 }
-
