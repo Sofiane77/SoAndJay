@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SoAndJayApplication<So-Jay>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.doranco.SoAndJay.SoAndJayApplication",
+            "projectName": "So-Jay",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
