@@ -10,7 +10,12 @@
     </div>
     <div class="container">
         <h2>Votre commande a été enregistrée</h2>
-        <!-- Contenu de la page de confirmation de commande -->
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="content">
+                <!-- Message de confirmation de la commande -->
+            </ui:define>
+        </ui:composition>
+
     </div>
     <div class="footer">
         <p>Mon Site - Tous droits réservés</p>

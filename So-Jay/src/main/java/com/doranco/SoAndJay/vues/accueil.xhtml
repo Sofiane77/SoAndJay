@@ -10,7 +10,11 @@
     </div>
     <div class="container">
         <h2>Bienvenue sur notre site</h2>
-        <!-- Contenu de la page d'accueil -->
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="content">
+                <!-- Contenu de la page d'accueil -->
+            </ui:define>
+        </ui:composition>
     </div>
     <div class="footer">
         <p>Mon Site - Tous droits réservés</p>

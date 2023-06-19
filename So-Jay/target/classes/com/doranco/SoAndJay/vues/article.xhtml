@@ -10,7 +10,12 @@
     </div>
     <div class="container">
         <h2>Détails de l'article</h2>
-        <!-- Contenu de la page d'article -->
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="content">
+                <!-- Affichage des détails de l'article -->
+            </ui:define>
+        </ui:composition>
+
     </div>
     <div class="footer">
         <p>Mon Site - Tous droits réservés</p>
