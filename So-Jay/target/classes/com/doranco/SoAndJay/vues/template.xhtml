@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Mon Application</title>
+    <!-- Ajoutez vos balises meta, CSS, JS, etc. ici -->
+</head>
+<body>
+    <header>
+        <!-- Ajoutez ici votre en-tête commun -->
+    </header>
+
+    <main>
+        <section>
+            <div class="container">
+                <div class="content">
+                    <!-- Contenu spécifique de chaque page -->
+                    <th:block th:replace="~{content :: body}"></th:block>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Ajoutez ici votre pied de page commun -->
+    </footer>
+</body>
+</html>
