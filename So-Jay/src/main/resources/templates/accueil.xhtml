@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Accueil</title>
     <style>
@@ -28,7 +28,7 @@
     <div class="container">
         <h1>Bienvenue sur notre site</h1>
         <p>Vous pouvez consulter nos articles en cliquant sur le lien ci-dessous :</p>
-        <a class="link" href="article.xhtml">Voir les articles</a>
+        <a class="link" th:href="@{/articles}">Voir les articles</a>
     </div>
 </body>
 </html>
