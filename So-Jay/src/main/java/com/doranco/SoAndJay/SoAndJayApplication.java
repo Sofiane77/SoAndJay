@@ -16,7 +16,7 @@ public class SoAndJayApplication {
 		System.out.println("projet maven");
 		
 		UtilisateurServiceImpl utilisateurService = new UtilisateurServiceImpl();
-		Utilisateur utilisateur = new Utilisateur("belhadi","sofiane","08081999",true,Profil.ADMIN,"so@gmail.com","root","084169258963");
+		Utilisateur utilisateur = new Utilisateur("jayson","mooken","08081999",true,Profil.ADMIN,"so@gmail.com","root","084169258963");
 		utilisateurService.createUtilisateur(utilisateur);
 		
 		UserRepository userRepository = SpringApplication
