@@ -47,8 +47,7 @@ public class Utilisateur implements Serializable{
     }
 
     public Utilisateur(String nom, String prenom, Date dateNaissance, boolean isActif, String profil,
-            String email, String password, String telephone, List<Adresse> adresses, List<Commande> commandes,
-            List<CartePaiement> cartesDePaiement, List<Commentaire> commentaires, List<ArticlePanier> panier) {
+            String email, String password, String telephone) {
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
@@ -57,11 +56,7 @@ public class Utilisateur implements Serializable{
         this.email = email;
         this.password = password;
         this.telephone = telephone;
-        this.adresses = adresses;
-        this.commandes = commandes;
-        this.cartesDePaiement = cartesDePaiement;
-        this.commentaires = commentaires;
-        this.panier = panier;
+
     }
 
 

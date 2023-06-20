@@ -1,12 +1,10 @@
 package com.doranco.SoAndJay.services;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.doranco.SoAndJay.entities.Utilisateur;
 import com.doranco.SoAndJay.repository.UserRepository;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class UtilisateurServiceImpl implements UtilisateurService {
@@ -26,7 +24,13 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
     @Override
     public Utilisateur createUtilisateur(Utilisateur utilisateur) {
-        return userRepository.save(utilisateur);
+        if (userRepository != null) {
+            return userRepository.save(utilisateur);
+        } else {
+            System.out.println("erreur , c'est nul");
+        }
+        return utilisateur;
+    
     }
 
     @Override
