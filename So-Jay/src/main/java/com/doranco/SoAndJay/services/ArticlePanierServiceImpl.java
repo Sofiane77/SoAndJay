@@ -39,6 +39,11 @@ public class ArticlePanierServiceImpl implements ArticlePanierService {
         articlePanierRepository.deleteById(id);
     }
 
+    @Override
+    public List<ArticlePanier> getArticlePaniersByUtilisateur(Long utilisateurId) {
+        return articlePanierRepository.findByUtilisateurId(utilisateurId);
+    }
+
     // Autres méthodes spécifiques à ajouter si nécessaire
 }
 

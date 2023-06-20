@@ -11,5 +11,8 @@ public interface ArticlePanierService {
     ArticlePanier updateArticlePanier(ArticlePanier articlePanier);
     void deleteArticlePanier(Long id);
     // Autres méthodes spécifiques à ajouter si nécessaire
+
+    List<ArticlePanier> getArticlePaniersByUtilisateur(Long utilisateurId);
+
 }
 
