@@ -1,8 +1,7 @@
 package com.doranco.SoAndJay.services;
 
-import java.util.List;
-
 import com.doranco.SoAndJay.entities.Utilisateur;
+import java.util.List;
 
 public interface UtilisateurService {
     Utilisateur getUtilisateurById(Long id);
