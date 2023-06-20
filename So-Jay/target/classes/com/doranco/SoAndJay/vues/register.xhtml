@@ -1,78 +1,92 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      th:replace="template.xhtml">
-      <head>
-        <title>Inscription</title>
-        <style>
-            /* Styles CSS */
-            body {
-                background-color: #f2f2f2;
-                font-family: Arial, sans-serif;
-            }
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+<head>
+    <title>Formulaire d'inscription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
 
-            .form-container {
-                width: 400px;
-                margin: 0 auto;
-                padding: 20px;
-                background-color: #fff;
-                border-radius: 5px;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            }
+        h2 {
+            color: #333333;
+        }
 
-            .form-group {
-                margin-bottom: 20px;
-            }
+        .form-container {
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-            .form-group label {
-                display: block;
-                margin-bottom: 5px;
-                font-weight: bold;
-            }
+        .form-container h:outputLabel {
+            display: block;
+            margin-top: 10px;
+        }
 
-            .form-group input {
-                width: 100%;
-                padding: 10px;
-                border: 1px solid #ccc;
-                border-radius: 3px;
-            }
+        .form-container h:inputText,
+        .form-container h:inputSecret {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
 
-            .form-group input[type="submit"] {
-                background-color: #4CAF50;
-                color: #fff;
-                cursor: pointer;
-            }
-        </style>
-    </head>
+        .form-container h:commandButton {
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .form-container h:commandButton:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
 <body>
-    <div th:fragment="content :: body">
-        <div class="form-container">
-            <h2>Inscription</h2>
-            <form>
-                <div class="form-group">
-                    <label for="username">Nom d'utilisateur :</label>
-                    <input type="text" id="username" name="username" placeholder="Choisissez un nom d'utilisateur" required>
-                </div>
+    <div class="form-container">
+        <h2>Inscription</h2>
 
-                <div class="form-group">
-                    <label for="email">Email :</label>
-                    <input type="email" id="email" name="email" placeholder="Votre adresse email" required>
-                </div>
+        <h:form>
+            <h:outputLabel for="nom">Nom:</h:outputLabel>
+            <h:inputText id="nom" value="#{registrationBean.nom}" required="true" />
+            <br />
 
-                <div class="form-group">
-                    <label for="password">Mot de passe :</label>
-                    <input type="password" id="password" name="password" placeholder="Choisissez un mot de passe" required>
-                </div>
+            <h:outputLabel for="prenom">Prénom:</h:outputLabel>
+            <h:inputText id="prenom" value="#{registrationBean.prenom}" required="true" />
+            <br />
 
-                <div class="form-group">
-                    <label for="confirm-password">Confirmez le mot de passe :</label>
-                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmez votre mot de passe" required>
-                </div>
+            <h:outputLabel for="dateNaissance">Date de naissance:</h:outputLabel>
+            <h:inputText id="dateNaissance" value="#{registrationBean.dateNaissance}" required="true" />
+            <br />
 
-                <div class="form-group">
-                    <input type="submit" value="S'inscrire">
-                </div>
-            </form>
-        </div>
+            <h:outputLabel for="email">Email:</h:outputLabel>
+            <h:inputText id="email" value="#{registrationBean.email}" required="true" />
+            <br />
+
+            <h:outputLabel for="password">Mot de passe:</h:outputLabel>
+            <h:inputSecret id="password" value="#{registrationBean.password}" required="true" />
+            <br />
+
+            <h:outputLabel for="telephone">Téléphone:</h:outputLabel>
+            <h:inputText id="telephone" value="#{registrationBean.telephone}" required="true" />
+            <br />
+
+            <!-- Autres champs à ajouter ici -->
+
+            <h:commandButton value="S'inscrire" action="#{registrationBean.register}" />
+        </h:form>
     </div>
 </body>
 </html>
