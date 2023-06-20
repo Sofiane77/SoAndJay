@@ -1,5 +1,6 @@
 package com.doranco.SoAndJay.entities;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
@@ -7,64 +8,62 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Commande")
-public class Commande {
+public class Commande implements Serializable{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String numero;
-
     private Date dateCreation;
-
     private Date dateLivraison;
-
-    private double tataleRemise;
-
+    private double totaleRemise;
     private double fraisExpedition;
-
     private double totalGeneral;
 
-    @OneToOne
-    @JoinColumn(name = "adresseFacturation_id")
+    @ManyToOne
     private Adresse adresseFacturation;
 
-    @OneToOne
-    @JoinColumn(name = "adresseLivraison_id")
+    @ManyToOne
     private Adresse adresseLivraison;
 
-    @OneToOne
-    @JoinColumn(name = "cartePaiementDefaut_id")
+    @ManyToOne
     private CartePaiement cartePaiementDefaut;
 
     @ManyToOne
-    @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
 
     @OneToMany(mappedBy = "commande")
     private List<LigneDeCommande> lignesCommande;
 
+    // Constructeurs
     public Commande() {
     }
 
-    public Commande(String numero, Date dateCreation, Date dateLivraison, double tataleRemise, double fraisExpedition, double totalGeneral) {
+    public Commande(String numero, Date dateCreation, Date dateLivraison, double totaleRemise, double fraisExpedition,
+            double totalGeneral, Adresse adresseFacturation, Adresse adresseLivraison,
+            CartePaiement cartePaiementDefaut, Utilisateur utilisateur, List<LigneDeCommande> lignesCommande) {
         this.numero = numero;
         this.dateCreation = dateCreation;
         this.dateLivraison = dateLivraison;
-        this.tataleRemise = tataleRemise;
+        this.totaleRemise = totaleRemise;
         this.fraisExpedition = fraisExpedition;
         this.totalGeneral = totalGeneral;
+        this.adresseFacturation = adresseFacturation;
+        this.adresseLivraison = adresseLivraison;
+        this.cartePaiementDefaut = cartePaiementDefaut;
+        this.utilisateur = utilisateur;
+        this.lignesCommande = lignesCommande;
     }
 
-    // Getters and setters
 
+
+    // Getters et Setters
     public Long getId() {
         return id;
     }
@@ -97,12 +96,12 @@ public class Commande {
         this.dateLivraison = dateLivraison;
     }
 
-    public double getTataleRemise() {
-        return tataleRemise;
+    public double getTotaleRemise() {
+        return totaleRemise;
     }
 
-    public void setTataleRemise(double tataleRemise) {
-        this.tataleRemise = tataleRemise;
+    public void setTotaleRemise(double totaleRemise) {
+        this.totaleRemise = totaleRemise;
     }
 
     public double getFraisExpedition() {
@@ -160,4 +159,6 @@ public class Commande {
     public void setLignesCommande(List<LigneDeCommande> lignesCommande) {
         this.lignesCommande = lignesCommande;
     }
+
+    // Autres méthodes si nécessaire
 }

@@ -2,47 +2,49 @@ package com.doranco.SoAndJay.entities;
 
 
 
+import java.io.Serializable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "LigneDeCommande")
-public class LigneDeCommande {
+public class LigneDeCommande implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private int quantite;
-
     private double prixUnitaire;
-
     private double remiseArticle;
 
-    @ManyToOne
-    @JoinColumn(name = "commande_id")
-    private Commande commande;
-
     @OneToOne
-    @JoinColumn(name = "article_id")
     private Article article;
 
+    @ManyToOne
+    private Commande commande;
+
+    // Constructeurs
     public LigneDeCommande() {
     }
 
-    public LigneDeCommande(int quantite, double prixUnitaire, double remiseArticle) {
+    public LigneDeCommande(int quantite, double prixUnitaire, double remiseArticle, Article article,
+            Commande commande) {
         this.quantite = quantite;
         this.prixUnitaire = prixUnitaire;
         this.remiseArticle = remiseArticle;
+        this.article = article;
+        this.commande = commande;
     }
 
-    // Getters and setters
 
+
+    // Getters et Setters
     public Long getId() {
         return id;
     }
@@ -75,6 +77,14 @@ public class LigneDeCommande {
         this.remiseArticle = remiseArticle;
     }
 
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
+    }
+
     public Commande getCommande() {
         return commande;
     }
@@ -83,11 +93,5 @@ public class LigneDeCommande {
         this.commande = commande;
     }
 
-    public Article getArticle() {
-        return article;
-    }
-
-    public void setArticle(Article article) {
-        this.article = article;
-    }
+    // Autres méthodes si nécessaire
 }

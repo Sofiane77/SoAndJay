@@ -1,62 +1,54 @@
 package com.doranco.SoAndJay.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Article")
-public class Article {
+public class Article implements Serializable{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String nom;
-
+    private String titre;
     private String description;
-
     private double prix;
-
-    private double remise;
-
-    private int stock;
-
-    private boolean isVendable;
-
-    private String photos; // Chemin vers le dossier du disque dur contenant les photos
-
-    private String videos; // Chemin vers le dossier du disque dur contenant les vidéos
+    private String categorie;
 
     @OneToMany(mappedBy = "article")
     private List<Commentaire> commentaires;
 
-    @ManyToOne
-    @JoinColumn(name = "categorie_id")
-    private Categorie categorie;
+    @OneToMany(mappedBy = "article")
+    private List<LigneDeCommande> lignesCommande;
 
+    @OneToMany(mappedBy = "article")
+    private List<ArticlePanier> panier;
+
+    // Constructeurs
     public Article() {
     }
 
-    public Article(String nom, String description, double prix, double remise, int stock, boolean isVendable, String photos, String videos) {
-        this.nom = nom;
+    public Article(String titre, String description, double prix, String categorie, List<Commentaire> commentaires,
+            List<LigneDeCommande> lignesCommande, List<ArticlePanier> panier) {
+        this.titre = titre;
         this.description = description;
         this.prix = prix;
-        this.remise = remise;
-        this.stock = stock;
-        this.isVendable = isVendable;
-        this.photos = photos;
-        this.videos = videos;
+        this.categorie = categorie;
+        this.commentaires = commentaires;
+        this.lignesCommande = lignesCommande;
+        this.panier = panier;
     }
 
-    // Getters and setters
 
+
+    // Getters et Setters
     public Long getId() {
         return id;
     }
@@ -65,12 +57,12 @@ public class Article {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getTitre() {
+        return titre;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
     public String getDescription() {
@@ -89,44 +81,12 @@ public class Article {
         this.prix = prix;
     }
 
-    public double getRemise() {
-        return remise;
+    public String getCategorie() {
+        return categorie;
     }
 
-    public void setRemise(double remise) {
-        this.remise = remise;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
-    public boolean isVendable() {
-        return isVendable;
-    }
-
-    public void setVendable(boolean vendable) {
-        isVendable = vendable;
-    }
-
-    public String getPhotos() {
-        return photos;
-    }
-
-    public void setPhotos(String photos) {
-        this.photos = photos;
-    }
-
-    public String getVideos() {
-        return videos;
-    }
-
-    public void setVideos(String videos) {
-        this.videos = videos;
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
     }
 
     public List<Commentaire> getCommentaires() {
@@ -137,11 +97,21 @@ public class Article {
         this.commentaires = commentaires;
     }
 
-    public Categorie getCategorie() {
-        return categorie;
+    public List<LigneDeCommande> getLignesCommande() {
+        return lignesCommande;
     }
 
-    public void setCategorie(Categorie categorie) {
-        this.categorie = categorie;
+    public void setLignesCommande(List<LigneDeCommande> lignesCommande) {
+        this.lignesCommande = lignesCommande;
     }
+
+    public List<ArticlePanier> getPanier() {
+        return panier;
+    }
+
+    public void setPanier(List<ArticlePanier> panier) {
+        this.panier = panier;
+    }
+
+    // Autres méthodes si nécessaire
 }

@@ -1,42 +1,46 @@
 package com.doranco.SoAndJay.entities;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Commentaire")
-public class Commentaire {
+public class Commentaire implements Serializable{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String texte;
-
     private int note;
 
     @ManyToOne
-    @JoinColumn(name = "article_id")
     private Article article;
 
     @ManyToOne
-    @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
 
+    // Constructeurs
     public Commentaire() {
     }
 
-    public Commentaire(String texte, int note) {
+
+
+    public Commentaire(String texte, int note, Article article, Utilisateur utilisateur) {
         this.texte = texte;
         this.note = note;
+        this.article = article;
+        this.utilisateur = utilisateur;
     }
 
-    // Getters and setters
 
+
+    // Getters et Setters
     public Long getId() {
         return id;
     }
@@ -76,4 +80,6 @@ public class Commentaire {
     public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
     }
+
+    // Autres méthodes si nécessaire
 }

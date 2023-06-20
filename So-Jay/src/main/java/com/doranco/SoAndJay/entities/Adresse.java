@@ -13,25 +13,23 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "Adresse")
-@NoArgsConstructor
 public class Adresse {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String numero;
-
     private String rue;
-
     private String ville;
-
     private String codePostal;
 
     @ManyToOne
-    @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
 
-    // Constructeurs, getters et setters
+    // Constructeurs
+    public Adresse() {
+    }
+
 
     public Adresse(String numero, String rue, String ville, String codePostal, Utilisateur utilisateur) {
         this.numero = numero;
@@ -41,8 +39,9 @@ public class Adresse {
         this.utilisateur = utilisateur;
     }
 
-    // Getters et setters
 
+
+    // Getters et Setters
     public Long getId() {
         return id;
     }
@@ -90,5 +89,6 @@ public class Adresse {
     public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
     }
-}
 
+    // Autres méthodes si nécessaire
+}

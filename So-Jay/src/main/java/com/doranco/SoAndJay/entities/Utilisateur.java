@@ -1,10 +1,10 @@
 package com.doranco.SoAndJay.entities;
 
+import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,26 +13,18 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Utilisateur")
-public class Utilisateur {
+public class Utilisateur implements Serializable{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nom;
-
     private String prenom;
-
-    private String dateNaissance;
-
+    private Date dateNaissance;
     private boolean isActif;
-
-    @Enumerated(EnumType.STRING)
-    private Profil profil;
-
+    private String profil;
     private String email;
-
     private String password;
-
     private String telephone;
 
     @OneToMany(mappedBy = "utilisateur")
@@ -42,15 +34,21 @@ public class Utilisateur {
     private List<Commande> commandes;
 
     @OneToMany(mappedBy = "utilisateur")
+    private List<CartePaiement> cartesDePaiement;
+
+    @OneToMany(mappedBy = "utilisateur")
     private List<Commentaire> commentaires;
 
     @OneToMany(mappedBy = "utilisateur")
     private List<ArticlePanier> panier;
 
+    // Constructeurs
     public Utilisateur() {
     }
 
-    public Utilisateur(String nom, String prenom, String dateNaissance, boolean isActif, Profil profil, String email, String password, String telephone) {
+    public Utilisateur(String nom, String prenom, Date dateNaissance, boolean isActif, String profil,
+            String email, String password, String telephone, List<Adresse> adresses, List<Commande> commandes,
+            List<CartePaiement> cartesDePaiement, List<Commentaire> commentaires, List<ArticlePanier> panier) {
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
@@ -59,10 +57,16 @@ public class Utilisateur {
         this.email = email;
         this.password = password;
         this.telephone = telephone;
+        this.adresses = adresses;
+        this.commandes = commandes;
+        this.cartesDePaiement = cartesDePaiement;
+        this.commentaires = commentaires;
+        this.panier = panier;
     }
 
-    // Getters and setters
 
+
+    // Getters et Setters
     public Long getId() {
         return id;
     }
@@ -87,11 +91,11 @@ public class Utilisateur {
         this.prenom = prenom;
     }
 
-    public String getDateNaissance() {
+    public Date getDateNaissance() {
         return dateNaissance;
     }
 
-    public void setDateNaissance(String dateNaissance) {
+    public void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
 
@@ -103,11 +107,11 @@ public class Utilisateur {
         isActif = actif;
     }
 
-    public Profil getProfil() {
+    public String getProfil() {
         return profil;
     }
 
-    public void setProfil(Profil profil) {
+    public void setProfil(String profil) {
         this.profil = profil;
     }
 
@@ -151,6 +155,14 @@ public class Utilisateur {
         this.commandes = commandes;
     }
 
+    public List<CartePaiement> getCartesDePaiement() {
+        return cartesDePaiement;
+    }
+
+    public void setCartesDePaiement(List<CartePaiement> cartesDePaiement) {
+        this.cartesDePaiement = cartesDePaiement;
+    }
+
     public List<Commentaire> getCommentaires() {
         return commentaires;
     }
@@ -166,4 +178,6 @@ public class Utilisateur {
     public void setPanier(List<ArticlePanier> panier) {
         this.panier = panier;
     }
+
+    // Autres méthodes si nécessaire
 }

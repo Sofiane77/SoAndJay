@@ -1,51 +1,49 @@
 package com.doranco.SoAndJay.entities;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 
 @Entity
 @Table(name = "CartePaiement")
-public class CartePaiement {
+public class CartePaiement implements Serializable{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nomProprietaire;
-
     private String prenomProprietaire;
-
-    private String numero; // crypté
-
-    private String dateFinValidite;
-
-    private String cryptogramme; // crypté
+    private String numero;
+    private Date dateFinValidite;
+    private String cryptogramme;
 
     @ManyToOne
-    @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
 
-    // Construtueur par défaut
+    // Constructeurs
     public CartePaiement() {
-        }
+    }
 
-    // Construtueur
-
-    public CartePaiement(String nomProprietaire, String prenomProprietaire, String numero, String dateFinValidite, String cryptogramme) {
+    public CartePaiement(String nomProprietaire, String prenomProprietaire, String numero, Date dateFinValidite,
+            String cryptogramme, Utilisateur utilisateur) {
         this.nomProprietaire = nomProprietaire;
         this.prenomProprietaire = prenomProprietaire;
         this.numero = numero;
         this.dateFinValidite = dateFinValidite;
         this.cryptogramme = cryptogramme;
+        this.utilisateur = utilisateur;
     }
 
-    // Getters and setters
 
+
+    // Getters et Setters
     public Long getId() {
         return id;
     }
@@ -78,11 +76,11 @@ public class CartePaiement {
         this.numero = numero;
     }
 
-    public String getDateFinValidite() {
+    public Date getDateFinValidite() {
         return dateFinValidite;
     }
 
-    public void setDateFinValidite(String dateFinValidite) {
+    public void setDateFinValidite(Date dateFinValidite) {
         this.dateFinValidite = dateFinValidite;
     }
 
@@ -101,8 +99,6 @@ public class CartePaiement {
     public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
     }
+
+    // Autres méthodes si nécessaire
 }
-
-
-
-

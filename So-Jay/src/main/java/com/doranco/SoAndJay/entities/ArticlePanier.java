@@ -1,39 +1,42 @@
 package com.doranco.SoAndJay.entities;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "ArticlePanier")
-public class ArticlePanier {
+public class ArticlePanier implements Serializable{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "article_id")
+    @OneToOne
     private Article article;
 
     private int quantite;
 
     @ManyToOne
-    @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
 
+    // Constructeurs
     public ArticlePanier() {
     }
 
-    public ArticlePanier(int quantite) {
+    public ArticlePanier(Article article, int quantite, Utilisateur utilisateur) {
+        this.article = article;
         this.quantite = quantite;
+        this.utilisateur = utilisateur;
     }
 
-    // Getters and setters
-
+    // Getters et Setters
     public Long getId() {
         return id;
     }
@@ -65,4 +68,6 @@ public class ArticlePanier {
     public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
     }
+
+    // Autres méthodes si nécessaire
 }
