@@ -10,9 +10,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "Utilisateur")
+@NoArgsConstructor
+@Data
 public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,8 +51,7 @@ public class Utilisateur {
     @OneToMany(mappedBy = "utilisateur")
     private List<ArticlePanier> panier;
 
-    public Utilisateur() {
-    }
+
 
     public Utilisateur(String nom, String prenom, String dateNaissance, boolean isActif, Profil profil, String email, String password, String telephone) {
         this.nom = nom;
