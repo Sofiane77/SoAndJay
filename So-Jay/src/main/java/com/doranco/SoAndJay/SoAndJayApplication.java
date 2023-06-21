@@ -6,9 +6,8 @@ import com.doranco.SoAndJay.repository.UserRepository;
 import com.doranco.SoAndJay.services.UtilisateurServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.web.SecurityFilterChain;
+
+
 
 @SpringBootApplication
 public class SoAndJayApplication {
@@ -28,12 +27,6 @@ public class SoAndJayApplication {
 									  userRepository.saveAndFlush(utilisateur);
 
 
-
 	}
-
-	    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return new SecurityConfig().apply(http);
-    }
 
 }
