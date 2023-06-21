@@ -2,8 +2,6 @@ package com.doranco.SoAndJay.restController.controllerVue;
 
 import java.time.LocalDate;
 
-import org.hibernate.mapping.Set;
-import org.hibernate.query.sqm.internal.QuerySqmImpl.UniqueSemanticFilterQueryOption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +11,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.doranco.SoAndJay.entities.Utilisateur;
@@ -35,7 +31,7 @@ public class AddUtilisateurController {
         return "add-utilisateur";
     }
 
-    @PostMapping("/register")
+    @PostMapping("/formAddUser")
     public RedirectView registerUser(@ModelAttribute("utilisateur") @Validated Utilisateur utilisateur,
                                      BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -49,10 +45,11 @@ public class AddUtilisateurController {
 
         boolean isRegistered = savedUtilisateur != null;
         if (isRegistered) {
-            return new RedirectView("/gestion");
+            return new RedirectView("/home");
         } else {
             return new RedirectView("/register?error");
         }
+
     }
 
 
