@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class RegisterController {
 
-    @GetMapping("/register")
+    @GetMapping("/registers")
     public String showRegisterPage() {
         return "register";
     }
 
-    @PostMapping("/register")
+    @PostMapping("/registers")
     public String register(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
         // Logique de traitement de l'inscription
 

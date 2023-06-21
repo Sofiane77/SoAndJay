@@ -1,23 +1,30 @@
 package com.doranco.SoAndJay.restController.controllerVue;
 
+import java.time.LocalDate;
+
 import org.hibernate.mapping.Set;
 import org.hibernate.query.sqm.internal.QuerySqmImpl.UniqueSemanticFilterQueryOption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.doranco.SoAndJay.entities.Utilisateur;
 import com.doranco.SoAndJay.repository.UserRepository;
-import com.doranco.SoAndJay.services.UtilisateurServiceImpl;
+
 
 
 @Controller
 public class AddUtilisateurController {
+
     private final UserRepository utilisateurRepository;
 @Autowired
     public AddUtilisateurController(UserRepository userRepository) {
@@ -28,27 +35,25 @@ public class AddUtilisateurController {
         return "add-utilisateur";
     }
 
-@PostMapping("/traitement-creation-utilisateur")
-public ResponseEntity<String> traiterCreationUtilisateur(@RequestBody Utilisateur utilisateur) {
-    // Accéder aux données de l'utilisateur
-    String nom = utilisateur.getNom();
-    String prenom = utilisateur.getPrenom();
-    String email = utilisateur.getEmail();
-    String password = utilisateur.getPassword();
+    @PostMapping("/register")
+    public RedirectView registerUser(@ModelAttribute("utilisateur") @Validated Utilisateur utilisateur,
+                                     BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new RedirectView("/register?error");
+        }
 
-    Utilisateur nouvelUtilisateur = new Utilisateur();
-    nouvelUtilisateur.setNom(nom);
-    nouvelUtilisateur.setPrenom(prenom);
-    nouvelUtilisateur.setEmail(email);
-    nouvelUtilisateur.setPassword(password);
+        utilisateur.setDateNaissance(LocalDate.parse(utilisateur.getDateNaissance().toString()));
+        utilisateur.setActif(true);
 
-    UtilisateurServiceImpl utilisateurService = new UtilisateurServiceImpl();
-    utilisateurService.createUtilisateur(nouvelUtilisateur);
+        Utilisateur savedUtilisateur = utilisateurRepository.save(utilisateur);
 
-    utilisateurRepository.saveAndFlush(nouvelUtilisateur);
-    // Exemple de réponse réussie
-    return new ResponseEntity<>("Utilisateur créé avec succès.", HttpStatus.OK);
-}
+        boolean isRegistered = savedUtilisateur != null;
+        if (isRegistered) {
+            return new RedirectView("/gestion");
+        } else {
+            return new RedirectView("/register?error");
+        }
+    }
 
 
 
