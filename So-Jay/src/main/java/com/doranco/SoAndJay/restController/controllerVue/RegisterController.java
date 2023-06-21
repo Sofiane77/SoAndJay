@@ -1,13 +1,30 @@
 package com.doranco.SoAndJay.restController.controllerVue;
 
+import java.time.LocalDate;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
+
+import com.doranco.SoAndJay.entities.Utilisateur;
+import com.doranco.SoAndJay.repository.UserRepository;
 
 @Controller
 public class RegisterController {
+
+    private final UserRepository utilisateurRepository;
+
+    @Autowired
+    public RegisterController(UserRepository userRepository) {
+        this.utilisateurRepository = userRepository;
+    }
 
     @GetMapping("/registers")
     public String showRegisterPage() {
@@ -15,13 +32,25 @@ public class RegisterController {
     }
 
     @PostMapping("/registers")
-    public String register(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
-        // Logique de traitement de l'inscription
+    public RedirectView registerUser(@ModelAttribute("utilisateur") @Validated Utilisateur utilisateur,
+                                     BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new RedirectView("/register?error");
+        }
 
-        // Exemple basique : enregistrer l'utilisateur dans la base de données ou effectuer d'autres opérations nécessaires
+        utilisateur.setDateNaissance(LocalDate.parse(utilisateur.getDateNaissance().toString()));
+        utilisateur.setActif(true);
 
-        // Rediriger vers la page de connexion après l'inscription réussie
-        return "redirect:/login";
+
+        Utilisateur savedUtilisateur = utilisateurRepository.save(utilisateur);
+
+        boolean isRegistered = savedUtilisateur != null;
+        if (isRegistered) {
+            return new RedirectView("/home");
+        } else {
+            return new RedirectView("/register?error");
+        }
+
     }
 }
 
