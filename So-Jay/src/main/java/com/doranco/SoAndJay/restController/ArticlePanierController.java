@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.doranco.SoAndJay.entities.Adresse;
 import com.doranco.SoAndJay.entities.ArticlePanier;
 import com.doranco.SoAndJay.services.ArticlePanierService;
 
