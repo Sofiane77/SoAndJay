@@ -64,6 +64,8 @@
     <div class="form-container">
         <h2>Ajouter un utilisateur</h2>
 
+        <!-- Formulaire de création de compte utilisateur -->
+
         <h:form rendered="#{loginBean.isAdmin}">
             <h:outputLabel for="nom">Nom:</h:outputLabel>
             <h:inputText id="nom" value="#{userBean.nom}" required="true" />
