@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.doranco.SoAndJay.entities.Profil;
 import com.doranco.SoAndJay.entities.Utilisateur;
 import com.doranco.SoAndJay.repository.UserRepository;
 
@@ -40,6 +41,7 @@ public class AddUtilisateurController {
 
         utilisateur.setDateNaissance(LocalDate.parse(utilisateur.getDateNaissance().toString()));
         utilisateur.setActif(true);
+
 
         Utilisateur savedUtilisateur = utilisateurRepository.save(utilisateur);
 
