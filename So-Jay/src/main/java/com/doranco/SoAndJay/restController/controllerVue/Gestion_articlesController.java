@@ -4,6 +4,7 @@ import com.doranco.SoAndJay.entities.Article;
 import com.doranco.SoAndJay.services.ArticleService;
 import java.util.List;
 import java.util.Optional;
+import javax.faces.view.ViewScoped;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@ViewScoped
 @Controller
-@RequestMapping("/gestion-articles")
 public class Gestion_articlesController {
 
     private final ArticleService articleService;
@@ -26,10 +27,10 @@ public class Gestion_articlesController {
         this.articleService = articleService;
     }
 
-    @GetMapping
+   @RequestMapping("/gestion-articles")
     public String getAllArticles(Model model) {
         List<Article> articles = articleService.getAllArticles();
-        model.addAttribute("gestion-articles", articles);
+        model.addAttribute("test", articles);
         return "gestion-articles";
     }
 
