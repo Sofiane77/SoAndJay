@@ -3,8 +3,6 @@ package com.doranco.SoAndJay.restController.controllerVue;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.doranco.SoAndJay.entities.Profil;
 import com.doranco.SoAndJay.entities.Utilisateur;
 import com.doranco.SoAndJay.repository.UserRepository;
 
