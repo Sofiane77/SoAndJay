@@ -7,10 +7,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name = "CartePaiement")
+@NoArgsConstructor
+@Data
 public class CartePaiement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,9 +34,6 @@ public class CartePaiement {
     @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
 
-    // Construtueur par défaut
-    public CartePaiement() {
-        }
 
     // Construtueur
 
@@ -44,63 +45,7 @@ public class CartePaiement {
         this.cryptogramme = cryptogramme;
     }
 
-    // Getters and setters
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNomProprietaire() {
-        return nomProprietaire;
-    }
-
-    public void setNomProprietaire(String nomProprietaire) {
-        this.nomProprietaire = nomProprietaire;
-    }
-
-    public String getPrenomProprietaire() {
-        return prenomProprietaire;
-    }
-
-    public void setPrenomProprietaire(String prenomProprietaire) {
-        this.prenomProprietaire = prenomProprietaire;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    public String getDateFinValidite() {
-        return dateFinValidite;
-    }
-
-    public void setDateFinValidite(String dateFinValidite) {
-        this.dateFinValidite = dateFinValidite;
-    }
-
-    public String getCryptogramme() {
-        return cryptogramme;
-    }
-
-    public void setCryptogramme(String cryptogramme) {
-        this.cryptogramme = cryptogramme;
-    }
-
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
-    }
-
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
-    }
 }
 
 
