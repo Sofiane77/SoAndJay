@@ -1,7 +1,5 @@
 package com.doranco.SoAndJay.entities;
 
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,6 +8,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "Article")
@@ -143,5 +142,9 @@ public class Article {
 
     public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
+    }
+
+    public boolean isPresent() {
+        return false;
     }
 }
