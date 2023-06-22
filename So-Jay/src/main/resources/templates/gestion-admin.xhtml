@@ -5,20 +5,105 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-    <div class="header">
-        <h1>Gestion admin</h1>
-    </div>
-    <div class="container">
-        <h2>Gérer les administrateurs</h2>
-        <ui:composition template="/templates/template.xhtml">
-            <ui:define name="content">
-                <!-- Gestion des magasiniers, administrateurs et clients WebService -->
-            </ui:define>
-        </ui:composition>
+    <h1>Liste des Utilisateurs</h1>
 
-    </div>
-    <div class="footer">
-        <p>Mon Site - Tous droits réservés</p>
-    </div>
+    <h2>Magasiniers</h2>
+    <ul>
+        <ui:repeat var="magasinier" value="#{magasinierBean.listeMagasiniers}">
+            <li>#{magasinier.nom} #{magasinier.prenom}</li>
+        </ui:repeat>
+    </ul>
+
+    <h2>Administrateurs</h2>
+    <ul>
+        <ui:repeat var="admin" value="#{adminBean.listeAdministrateurs}">
+            <li>#{admin.nom} #{admin.prenom}</li>
+        </ui:repeat>
+    </ul>
+
+    <h2>Clients WebService</h2>
+    <ul>
+        <ui:repeat var="client" value="#{clientWebServiceBean.listeClientsWebService}">
+            <li>#{client.nom} #{client.prenom}</li>
+        </ui:repeat>
+    </ul>
+
+    <ul>
+        <li th:each="utilisateur : ${listUtilisateurs}">
+            <h3 th:text="${utilisateur.nom}"></h3>
+            <p th:text="${utilisateur.prenom}"></p>
+            <p th:text="${utilisateur.email}"></p>
+            <form action="/geston-admin" method="POST">
+                <input type="hidden" name="utilisateurId" th:value="${utilisateur.id}" />
+                <button type="submit">Ajouter au panier</button>
+            </form>
+        </li>
+    </ul>
+
+    <form action="/utilisateurs/create" method="GET">
+        <button type="submit">Ajouter un article</button>
+    </form>
+
+    <table>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Date de Naissance</th>
+            <th>Email</th>
+            <th>Téléphone</th>
+            <th>Profil</th>
+        </tr>
+        <c:forEach var="utilisateur" items="${utilisateurs}">
+            <tr>
+                <td>${utilisateurs.nom}</td>
+                <td>${utilisateurs.prenom}</td>
+                <td>${utilisateurs.dateNaissance}</td>
+                <td>${utilisateurs.email}</td>
+                <td>${utilisateurs.telephone}</td>
+                <td>${utilisateurs.profil}</td>
+            </tr>
+        </c:forEach>
+    </table>
+
+
+    <h2>Ajouter un magasinier, un admin ou un client</h2>
+
+    <form action="/formAddAll" method="post">
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom" placeholder="Entrez votre nom" required>
+
+        <label for="prenom">Prénom:</label>
+        <input type="text" id="prenom" name="prenom" placeholder="Entrez votre prénom" required>
+
+        <label for="dateNaissance">Date de Naissance:</label>
+        <input type="date" id="dateNaissance" name="dateNaissance" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Entrez votre email" required>
+
+        <label for="adresse">Adresse:</label>
+        <input type="text" id="adresse" name="adresse" placeholder="Entrez votre adresse" required>
+
+        <label for="password">Mot de passe:</label>
+        <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required>
+
+        <label for="telephone">Téléphone:</label>
+        <input type="tel" id="telephone" name="telephone" placeholder="Entrez votre numéro de téléphone" required>
+
+        <label for="profil">Profil :</label>
+        <select id="profil" name="profil">
+            <option value="CLIENT">Client</option>
+            <option value="MAGASINIER">Magasinier</option>
+            <option value="ADMIN">Admin</option>
+        </select>
+        <br>
+
+        <input type="submit" value="S'inscrire">
+      </form>
+</div>
 </body>
+
+
+
+
 </html>
