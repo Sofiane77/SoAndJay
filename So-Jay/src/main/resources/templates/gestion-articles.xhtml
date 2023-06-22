@@ -8,22 +8,36 @@ xmlns:th="http://www.thymeleaf.org">
     <title>Gestion des articles</title>
 </head>
 <body>
-    <tr th:each="article:${test}">
-        <td th:text="${article.id}"></td>
-        <td th:text="${article.nom}"></td>
-        <td th:text="${article.description}"></td>
-        <td th:text="${article.prix}"></td>
-        <td th:text="${article.stock}"></td>
-        <td>
-            <form th:action="@{/articles/__${article.id}__}" method="GET">
-                <input type="submit" value="Editer" />
-            </form>
-            <form th:action="@{/articles/__${article.id}__}" method="POST">
-                <input type="hidden" name="_method" value="DELETE" />
-                <input type="submit" value="Supprimer" />
-            </form>
-        </td>
-    </tr>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Stock</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="article:${test}">
+                <td th:text="${article.id}"></td>
+                <td th:text="${article.nom}"></td>
+                <td th:text="${article.description}"></td>
+                <td th:text="${article.prix}"></td>
+                <td th:text="${article.stock}"></td>
+                <td>
+                    <form th:action="@{/articles/__${article.id}__}" method="GET">
+                        <button type="submit">Editer</button>
+                    </form>
+                    <form th:action="@{/articles/__${article.id}__}" method="POST">
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <button type="submit">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <h2>Ajouter un nouvel article</h2>
 
     <form action="/articles" method="POST">
