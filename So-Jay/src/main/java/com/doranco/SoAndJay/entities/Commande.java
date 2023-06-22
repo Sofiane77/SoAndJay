@@ -12,9 +12,13 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "Commande")
+@NoArgsConstructor
+@Data
 public class Commande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,8 +55,6 @@ public class Commande {
     @OneToMany(mappedBy = "commande")
     private List<LigneDeCommande> lignesCommande;
 
-    public Commande() {
-    }
 
     public Commande(String numero, Date dateCreation, Date dateLivraison, double tataleRemise, double fraisExpedition, double totalGeneral) {
         this.numero = numero;
@@ -63,101 +65,5 @@ public class Commande {
         this.totalGeneral = totalGeneral;
     }
 
-    // Getters and setters
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    public Date getDateCreation() {
-        return dateCreation;
-    }
-
-    public void setDateCreation(Date dateCreation) {
-        this.dateCreation = dateCreation;
-    }
-
-    public Date getDateLivraison() {
-        return dateLivraison;
-    }
-
-    public void setDateLivraison(Date dateLivraison) {
-        this.dateLivraison = dateLivraison;
-    }
-
-    public double getTataleRemise() {
-        return tataleRemise;
-    }
-
-    public void setTataleRemise(double tataleRemise) {
-        this.tataleRemise = tataleRemise;
-    }
-
-    public double getFraisExpedition() {
-        return fraisExpedition;
-    }
-
-    public void setFraisExpedition(double fraisExpedition) {
-        this.fraisExpedition = fraisExpedition;
-    }
-
-    public double getTotalGeneral() {
-        return totalGeneral;
-    }
-
-    public void setTotalGeneral(double totalGeneral) {
-        this.totalGeneral = totalGeneral;
-    }
-
-    public Adresse getAdresseFacturation() {
-        return adresseFacturation;
-    }
-
-    public void setAdresseFacturation(Adresse adresseFacturation) {
-        this.adresseFacturation = adresseFacturation;
-    }
-
-    public Adresse getAdresseLivraison() {
-        return adresseLivraison;
-    }
-
-    public void setAdresseLivraison(Adresse adresseLivraison) {
-        this.adresseLivraison = adresseLivraison;
-    }
-
-    public CartePaiement getCartePaiementDefaut() {
-        return cartePaiementDefaut;
-    }
-
-    public void setCartePaiementDefaut(CartePaiement cartePaiementDefaut) {
-        this.cartePaiementDefaut = cartePaiementDefaut;
-    }
-
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
-    }
-
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
-    }
-
-    public List<LigneDeCommande> getLignesCommande() {
-        return lignesCommande;
-    }
-
-    public void setLignesCommande(List<LigneDeCommande> lignesCommande) {
-        this.lignesCommande = lignesCommande;
-    }
 }

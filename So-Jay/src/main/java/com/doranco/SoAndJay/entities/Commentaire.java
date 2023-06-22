@@ -7,11 +7,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "Commentaire")
 @NoArgsConstructor
+@Data
 public class Commentaire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,45 +36,5 @@ public class Commentaire {
         this.note = note;
     }
 
-    // Getters and setters
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTexte() {
-        return texte;
-    }
-
-    public void setTexte(String texte) {
-        this.texte = texte;
-    }
-
-    public int getNote() {
-        return note;
-    }
-
-    public void setNote(int note) {
-        this.note = note;
-    }
-
-    public Article getArticle() {
-        return article;
-    }
-
-    public void setArticle(Article article) {
-        this.article = article;
-    }
-
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
-    }
-
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
-    }
 }

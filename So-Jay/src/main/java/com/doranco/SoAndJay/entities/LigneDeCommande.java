@@ -10,9 +10,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "LigneDeCommande")
+@NoArgsConstructor
+@Data
 public class LigneDeCommande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,9 +35,6 @@ public class LigneDeCommande {
     @OneToOne
     @JoinColumn(name = "article_id")
     private Article article;
-
-    public LigneDeCommande() {
-    }
 
     public LigneDeCommande(int quantite, double prixUnitaire, double remiseArticle) {
         this.quantite = quantite;
