@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/gestion-articles")
 public class Gestion_articlesController {
-private final ArticleService articleService;
+
+    private final ArticleService articleService;
 
     @Autowired
     public Gestion_articlesController(ArticleService articleService) {
@@ -73,5 +74,5 @@ private final ArticleService articleService;
         }
     }
 }
-    
+
 

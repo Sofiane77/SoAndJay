@@ -9,6 +9,7 @@ public interface UserRepository extends JpaRepository<Utilisateur, Long> {
     @Override
     public <S extends Utilisateur> S saveAndFlush(S entity);
     // Méthodes spécifiques à ajouter si nécessaire
-    
-    
+
+    void deleteById(Long id);
+
 }
