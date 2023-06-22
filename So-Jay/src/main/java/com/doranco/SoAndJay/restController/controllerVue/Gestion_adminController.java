@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.doranco.SoAndJay.entities.Utilisateur;
@@ -30,17 +31,14 @@ public class Gestion_adminController {
         this.utilisateurRepository = userRepository;
     }
 
-    @GetMapping("/gestion_admin")
-    public String showGestionAdminPage() {
-        return "gestion-admin";
-    }
 
-    @GetMapping("/getAllUser")
+    @RequestMapping("/getAllUsertest")
     public String getAllUtilisateurs(Model model) {
         List<Utilisateur> utilisateurs = utilisateurRepository.findAll();
         model.addAttribute("listUtilisateurs", utilisateurs);
         return "utilisateurs";
     }
+
 
     @PostMapping("/formAddAll")
     public RedirectView registerUser(@ModelAttribute("utilisateur") @Validated Utilisateur utilisateur,
