@@ -46,7 +46,7 @@ public class AddUtilisateurController {
 
         boolean isRegistered = savedUtilisateur != null;
         if (isRegistered) {
-            return new RedirectView("/home");
+            return new RedirectView("/gestion-admin");
         } else {
             return new RedirectView("/register?error");
         }
