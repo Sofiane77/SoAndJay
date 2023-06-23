@@ -2,45 +2,68 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Accueil</title>
-
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: "../img/Logo.jpg";
+            background-color: #f9f9f9;
             margin: 0;
             padding: 20px;
         }
-
+    
         .container {
             text-align: center;
+            margin-top: 100px;
         }
-
+    
         h1 {
             color: #333333;
+            font-size: 30px;
+            margin-bottom: 20px;
         }
-
+    
+        .logo {
+            width: 300px;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+    
         .link {
             color: #007bff;
             text-decoration: none;
+            font-weight: bold;
+        }
+    
+        .link:hover {
+            text-decoration: underline;
+        }
+    
+        .auth-links {
+            margin-top: 40px;
+        }
+    
+        .auth-links a {
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+    
+        .auth-links a:hover {
+            text-decoration: underline;
         }
     </style>
-</head>
-<body>
-    <div class="container">
-
-        <h1>Bienvenue sur notre site</h1>
-
-        <img src="../templates/img/logo.jpg" alt="Logo" width="300" height="200">
-        <p>Vous pouvez consulter nos articles en cliquant sur le lien ci-dessous :</p>
-        <a class="link" th:href="@{/gestion-articles}">Voir les articles</a><br>
-
-        <a href="registers">Créer un compte utilisateur</a>
-        <br>
-        <a href="login">Se connecter</a>
-    </div>
-
-
-</body>
-</html>
-
-
+    
+    </head>
+    <body>
+        <div class="container">
+            <h1>Bienvenue sur notre site</h1>
+            <img src="https://lalorientaise.oepslorient.org/wp-content/uploads/2019/03/Smiley-pouce-lev%C3%A9.jpg" alt="Logo" width="300" height="200">
+            <p>Vous pouvez consulter nos articles en cliquant sur le lien ci-dessous :</p>
+            <a class="link" th:href="@{/gestion-articles}">Voir les articles</a>
+            <div class="auth-links">
+                <a href="registers">Créer un compte utilisateur</a>
+                <a href="login">Se connecter</a>
+            </div>
+        </div>
+    </body>
+    </html>
