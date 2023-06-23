@@ -17,7 +17,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         return userRepository.findById(id).orElse(null);
     }
 
-    @Override
+
     public List<Utilisateur> getAllUtilisateurs() {
         return userRepository.findAll();
     }
@@ -30,7 +30,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
             System.out.println("erreur , c'est nul");
         }
         return utilisateur;
-    
+
     }
 
     @Override

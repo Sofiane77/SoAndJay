@@ -1,15 +1,94 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Gestion des achats</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #333333;
+            margin-top: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 10px;
+            text-align: left;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .category-table {
+            margin-bottom: 30px;
+        }
+    </style>
 </head>
 <body>
     <h1>Gestion des achats</h1>
     <!-- Entête de la page avec les liens -->
     <h2>Liste des catégories</h2>
-    <!-- Liste des catégories -->
+    <!-- Tableau des catégories -->
+    <table class="category-table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Catégorie 1</td>
+                <td>Description de la catégorie 1</td>
+            </tr>
+            <tr>
+                <td>Catégorie 2</td>
+                <td>Description de la catégorie 2</td>
+            </tr>
+            <!-- Ajoutez ici plus de lignes pour chaque catégorie -->
+        </tbody>
+    </table>
+
     <h2>Articles</h2>
-    <!-- Liste des articles par catégorie -->
+    <!-- Tableau des articles -->
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prix</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Object 1</td>
+                <td>10€</td>
+            </tr>
+            <tr>
+                <td>Object 2</td>
+                <td>20€</td>
+            </tr>
+            <!-- Ajoutez ici plus de lignes pour chaque article -->
+        </tbody>
+    </table>
 </body>
 </html>

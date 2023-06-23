@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Formulaire de connexion</title>
+    <title>Connexion utilisateur</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -10,8 +10,10 @@
             padding: 20px;
         }
 
-        h2 {
+        h1 {
             color: #333333;
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         .form-container {
@@ -23,13 +25,13 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .form-container h:outputLabel {
+        .form-container label {
             display: block;
             margin-top: 10px;
         }
 
-        .form-container h:inputText,
-        .form-container h:inputSecret {
+        .form-container input[type="email"],
+        .form-container input[type="password"] {
             width: 100%;
             padding: 8px;
             margin-top: 5px;
@@ -38,7 +40,7 @@
             box-sizing: border-box;
         }
 
-        .form-container h:commandButton {
+        .form-container input[type="submit"] {
             background-color: #4CAF50;
             color: #ffffff;
             padding: 10px 20px;
@@ -49,30 +51,43 @@
             margin-top: 10px;
         }
 
-        .form-container h:commandButton:hover {
+        .form-container input[type="submit"]:hover {
             background-color: #45a049;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .create-account-link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
     <h1>Connexion utilisateur</h1>
     <!-- Formulaire de connexion utilisateur -->
-    <form action="#" th:action="@{/login}" method="POST">
-        <label for="email">Email :</label>
-        <input type="email" id="email" name="email" required>
-        <br>
-        <label for="motdepasse">Mot de passe :</label>
-        <input type="password" id="motdepasse" name="password" required>
-        <br>
+    <div class="form-container">
+        <form action="#" method="POST">
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" required>
+            <br>
 
-        <!-- Affichage de l'erreur en cas d'échec de connexion -->
-        <div th:if="${param.error}">
-            <p style="color: red;">Identifiants incorrects. Veuillez réessayer.</p>
-        </div>
+            <!-- Affichage de l'erreur en cas d'échec de connexion -->
+            <div class="error-message" th:if="${param.error}">
+                Identifiants incorrects. Veuillez réessayer.
+            </div>
 
-        <!-- Boutons de connexion et de création de compte -->
-        <input type="submit" value="Se connecter">
-        <a href="addUser">Créer un compte utilisateur</a>
-    </form>
+            <!-- Boutons de connexion et de création de compte -->
+            <input type="submit" value="Se connecter">
+            <a class="create-account-link" href="addUser">Créer un compte utilisateur</a>
+        </form>
+    </div>
 </body>
 </html>
