@@ -75,13 +75,17 @@
                 <th>ID</th>
                 <th>Nom</th>
                 <th>Email</th>
+                <th>Profil</th>
+                <th>Date de Naissance</th>
+                <th>Telephone</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="utilisateur : ${testuser}">
-                <td th:text="${utilisateur.id}"></td>
                 <td th:text="${utilisateur.nom}"></td>
                 <td th:text="${utilisateur.email}"></td>
+                <td th:text="${utilisateur.profil}"></td>
+                <td th:text="${utilisateur.telephone}"></td>
             </tr>
         </tbody>
     </table>
