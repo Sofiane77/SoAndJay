@@ -98,7 +98,7 @@ public class Gestion_articlesController {
 
         boolean isRegistered = savedArticle != null;
         if (isRegistered) {
-            return new RedirectView("/home");
+            return new RedirectView("/gestion-articles");
         } else {
             return new RedirectView("/register?error");
         }
