@@ -1,13 +1,77 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:h="http://java.sun.com/jsf/html"
-xmlns:f="http://java.sun.com/jsf/core"
-xmlns:p="http://primefaces.org/ui"
-xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Gestion des articles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333333;
+            margin-top: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 10px;
+            text-align: left;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #cccccc;
+        }
+
+        form {
+            display: inline-block;
+        }
+
+        .add-article-form {
+            margin-top: 30px;
+        }
+
+        .add-article-form label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        .add-article-form input[type="text"],
+        .add-article-form input[type="number"] {
+            width: 200px;
+            padding: 8px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .add-article-form input[type="submit"] {
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .add-article-form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
+    <h1>Gestion des articles</h1>
     <table>
         <thead>
             <tr>
@@ -38,9 +102,9 @@ xmlns:th="http://www.thymeleaf.org">
             </tr>
         </tbody>
     </table>
-    <h2>Ajouter un nouvel article</h2>
 
-    <form action="/articles" method="POST">
+    <h2>Ajouter un nouvel article</h2>
+    <form class="add-article-form" action="/articles" method="POST">
         <label for="nom">Nom:</label>
         <input type="text" id="nom" name="nom" required /><br>
 
