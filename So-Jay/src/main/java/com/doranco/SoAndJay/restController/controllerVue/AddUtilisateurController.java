@@ -22,7 +22,7 @@ import com.doranco.SoAndJay.repository.UserRepository;
 public class AddUtilisateurController {
 
     private final UserRepository utilisateurRepository;
-@Autowired
+
     public AddUtilisateurController(UserRepository userRepository) {
         this.utilisateurRepository = userRepository;
     }
